@@ -4,7 +4,7 @@
 #include <windows.h>
 #include "mlib.h"
 
-void main(int argc,char *argv[])
+int main(int argc,char *argv[])
 {
 	bool ifPause=true;
 	int runTimes=0;
@@ -22,16 +22,15 @@ void main(int argc,char *argv[])
 				break;
 			case 't':
 				sscanf(argv[++i],"%d",&runTimes);
+				//printf("%d\n",runTimes);
 				break;
 			case 'i':
-				iptf=i+1;
+				iptf=i+2;
 				sscanf(argv[++i],"%d",ipte);
+				//printf("%d %d %d\n",argc,iptf,ipte);
 				ipte+=iptf;
 				if(ipte>argc)
-				{
-					printf("ERROR!\n");
-					return;
-				}
+					return -1;
 				i=ipte;
 			case 'g':
 				sscanf(argv[++i],"%s",fmk);
@@ -70,5 +69,5 @@ void main(int argc,char *argv[])
 		if(ifPause)
 			system("pause");
 	}
-	return;
+	return 0;
 }
